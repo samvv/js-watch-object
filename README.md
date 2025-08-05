@@ -3,7 +3,7 @@
 This is a small and fun JavaScript package for monitoring changes made to
 ordinary JavaScript objects.
 
-## Exmaple
+## Example
 
 ```ts
 import { watch, Delta } from "@samvv/watch-object";
