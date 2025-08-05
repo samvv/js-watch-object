@@ -1,0 +1,28 @@
+{
+  "name": "@samvv/watch-object",
+  "version": "0.1.0",
+  "description": "Monitor any JavaScript object for real-time changes",
+  "keywords": [
+    "observer",
+    "monitor",
+    "watch",
+    "changes",
+    "value",
+    "library"
+  ],
+  "homepage": "https://github.com/samvv/js-watch-object#readme",
+  "bugs": {
+    "url": "https://github.com/samvv/js-watch-object/issues"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/samvv/js-watch-object.git"
+  },
+  "license": "MIT",
+  "author": "Sam Vervaeck",
+  "type": "module",
+  "main": "lib/index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  }
+}
