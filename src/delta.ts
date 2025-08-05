@@ -2,21 +2,18 @@
 export type SetProperty = {
   path: PropertyKey[];
   type: 'set';
-  key: PropertyKey;
   value: any;
 };
 
 export type CreateProperty = {
   path: PropertyKey[];
   type: 'create';
-  key: PropertyKey;
   value: any;
 };
 
 export type DeleteProperty = {
   path: PropertyKey[];
   type: 'delete';
-  key: PropertyKey;
 };
 
 /**
