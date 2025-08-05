@@ -1,21 +1,21 @@
 
 export type SetProperty = {
   path: PropertyKey[];
-  type: 'set-property';
+  type: 'set';
   key: PropertyKey;
   value: any;
 };
 
 export type CreateProperty = {
   path: PropertyKey[];
-  type: 'create-property';
+  type: 'create';
   key: PropertyKey;
   value: any;
 };
 
 export type DeleteProperty = {
   path: PropertyKey[];
-  type: 'delete-property';
+  type: 'delete';
   key: PropertyKey;
 };
 
@@ -25,9 +25,9 @@ export type DeleteProperty = {
  * You can extend this interface to define your own deltas.
  */
 export interface DeltaTypes {
-  'set-property': SetProperty;
-  'create-property': CreateProperty;
-  'delete-property': DeleteProperty;
+  'set': SetProperty;
+  'create': CreateProperty;
+  'delete': DeleteProperty;
 }
 
 export type Delta = DeltaTypes[keyof DeltaTypes];

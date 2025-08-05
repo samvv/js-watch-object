@@ -66,14 +66,14 @@ export function watch<T>(value: T, {
       },
       set(target, p, newValue, receiver) {
         if (Reflect.has(target, p)) {
-          onChange({ type: 'set-property', key: p, value: newValue, path });
+          onChange({ type: 'set', key: p, value: newValue, path });
         } else {
-          onChange({ type: 'create-property', key: p, value: newValue, path });
+          onChange({ type: 'create', key: p, value: newValue, path });
         }
         return Reflect.set(target, p, newValue, receiver);
       },
       deleteProperty(target, p) {
-        onChange({ type: 'delete-property', key: p, path });
+        onChange({ type: 'delete', key: p, path });
         return Reflect.deleteProperty(target, p);
       },
     });
