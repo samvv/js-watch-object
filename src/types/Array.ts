@@ -36,6 +36,7 @@ export default class TracedArray extends Array {
         path: ctx.path,
       });
     }
+    // @ts-ignore `deleteCount` contains `undefined` and TypeScript does not like this
     return Array.prototype.splice.call(this, start, deleteCount, ...rest);
   }
 
