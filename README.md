@@ -1,5 +1,8 @@
 # JavaScript Object Watcher
 
+[![NPM Version](https://img.shields.io/npm/v/%40samvv%2Fwatch-object?style=flat-square)](https://www.npmjs.com/package/@samvv/watch-object)
+
+
 This is a small and fun JavaScript package for monitoring changes made to
 ordinary JavaScript objects.
 
