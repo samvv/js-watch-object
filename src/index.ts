@@ -21,37 +21,41 @@ export type TracedOptions = {
   path?: PropertyKey[];
   types?: Newable[];
 };
-export function watch<T>(value: T, {
+export function watch<T>(obj: T, {
   onChange,
   path = [],
   types = defaultTypes,
 }: TracedOptions): T {
 
-  function wrap(value: any, path: PropertyKey[]) {
+  function wrap(obj: any, path: PropertyKey[]) {
 
     // One context per unique path and callback
     const ctx = { notify: onChange, path };
 
-    function wrapForSpecialType(value: any, type: Newable) {
+    function wrapForSpecialType(obj: any, type: Newable) {
 
       // Get the list of methods that are defined within the class
       const proto = type.prototype;
 
-      return new Proxy(value, {
+      return new Proxy(obj, {
         get(target, p, receiver) {
           if (Object.prototype.hasOwnProperty.call(proto, p)) {
             let member = proto[p];
             if (typeof(member) === 'function') {
-              member = member.bind(assignWithProxy(value, traceContextSymbol, ctx));
+              member = member.bind(assignWithProxy(obj, traceContextSymbol, ctx));
             }
             return member;
           }
-          return wrap(Reflect.get(target, p, receiver), [ ...path, p ]);
+          const value = Reflect.get(target, p, receiver);
+          if (isPrimitive(value)) {
+            return value;
+          }
+          return wrap(value, [ ...path, p ]);
         },
       });
     }
 
-    return new Proxy(value, {
+    return new Proxy(obj, {
       get(target, p, receiver) {
         let value = Reflect.get(target, p, receiver)
         if (isPrimitive(value)) {
@@ -79,7 +83,7 @@ export function watch<T>(value: T, {
     });
   }
 
-  return wrap(value, path);
+  return wrap(obj, path);
 }
 
 function isPrimitive(value: any): boolean {
